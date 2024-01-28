@@ -1,0 +1,26 @@
+
+    <div [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode" class="slide-up-container">
+
+        <div mat-dialog-close style="height: 50px ;align-self: flex-end;">
+            <mat-icon class="material-symbols-outlined close-icon" >close</mat-icon>
+        </div>
+        <div class="image-container">
+        <span class="category-container">{{data.category | titlecase}}</span>
+        <div class="photo-container" *ngIf="data.OriginalImageUrl">
+            <img *ngIf="data.OriginalImageUrl && imageSize" [src]="data.OriginalImageUrl" >
+            <img *ngIf="data.thumbnailFileUrl && !imageSize" [src]="data.thumbnailFileUrl" >
+            <span (click)="displayOriginalImage()" class="original-image-url">Display {{imageResolution}} size image</span>
+        </div>
+           
+         <div class="button-container" >
+            
+            <div class="download-button" (click)="downloadImage()">Download </div>
+         </div>
+           
+          
+        </div>
+        
+       
+    </div>
+
+

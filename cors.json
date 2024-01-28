@@ -1,0 +1,11 @@
+[
+  {
+    "origin": "*",
+    "method": "FETCH",
+    "headers": [
+      "Authorization",
+      "Content-Type",
+      "Access-Control-Allow-Origin"
+    ]
+  }
+]

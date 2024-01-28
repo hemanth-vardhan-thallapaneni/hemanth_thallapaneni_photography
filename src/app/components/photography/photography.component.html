@@ -1,0 +1,25 @@
+
+
+
+<div class="photography-container" *ngIf="loadImages.length" >
+
+   <div class="photo"   *ngFor="let image of loadImages | keyvalue;trackBy: trackById " [@fadeInOnEnter] >
+      <!-- <div class="photo" > -->
+         <img  *ngIf="image.value.thumbnailFileUrl" (click)="imageClicked(image.value)" loading="lazy" [src]="image.value.thumbnailFileUrl">
+      <!-- </div> -->
+    
+   </div>
+  
+   
+</div>
+<div *ngIf="loadImages.length > 1" class="shot-with-love">Shot with love! ❤️</div>
+<div class="loader-container" *ngIf="loadImages.length < 1">
+   <img height="400px" width="400px" src="../../../assets/HT.gif"/>
+</div>
+
+<!-- <div>
+   <input type="text" placeholder="category" [(ngModel)]="category">
+   <input type="text" placeholder="orientation" [(ngModel)]="orientation">
+   <input type="file" (change)="uploadImages($event)">
+   <button (click)="uploadToFirebase($event)">upload</button>
+</div> -->

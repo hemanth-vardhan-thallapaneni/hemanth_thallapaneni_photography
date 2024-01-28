@@ -1,0 +1,26 @@
+.notice-class{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    font-size: 0.8rem;
+    width: 100%;
+    height: 100%;
+    
+    span{
+        width: 90%;
+        color: gray;
+
+    }
+}
+.close{
+    color: gray;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .notice-class{
+        font-size: 0.5rem;
+    }
+}

@@ -1,0 +1,31 @@
+.nav-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 99%;
+    padding: 5px;
+    top: 0;
+    position: sticky;
+   font-size: 0.9rem;
+   backdrop-filter: blur(10px);
+    .left-container , .right-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 20px;
+       
+        img,div{
+            cursor: pointer;
+        }
+        div{
+            font-weight: 300;
+            text-decoration: underline 0.10em rgba(0, 0, 0, 0);
+            transition: text-decoration-color 300ms;
+        }
+        div:hover{
+            font-weight: 800;
+            text-decoration-color: rgba(0, 0, 0, 1);
+        }
+        
+    }
+}
