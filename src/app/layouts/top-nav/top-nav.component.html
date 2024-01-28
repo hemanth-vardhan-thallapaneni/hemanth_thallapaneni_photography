@@ -1,9 +1,13 @@
 <div [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode" class="nav-container">
      <div class="left-container">
            <img [ngStyle]="isDarkMode ? {'filter': 'invert(100%)'} : {}" src="../../../assets/ht_logo.png" alt="logo" height="50px" width="50px">
-           <div  (click)="routeToPage(item.route)" *ngFor="let item of navItems">
-            {{item.name | titlecase}}
-         </div>
+        
+            <div  (click)="routeToPage(item.route)" *ngFor="let item of navItems">
+              <span *ngIf="!showMenuButton">{{item.name | titlecase}}</span> 
+            </div>
+         
+         
+         
      </div>
 
      <div class="right-container">
@@ -11,7 +15,10 @@
          <mat-icon  class="material-symbols-outlined">{{isDarkMode ? "dark_mode" : "light_mode"}}</mat-icon>
       </button> -->
       
-      <div (click)="routeToPage('about')">About</div>
-      <div>Thank you!</div>
+      <div *ngIf="!showMenuButton" (click)="routeToPage('about')">About</div>
+      <div *ngIf="!showMenuButton">Thank you!</div>
+      <button (click)="toggleSideMenu()" mat-icon-button style="justify-self: flex-end;align-self: center;" *ngIf="showMenuButton"  class="material-symbols-outlined" >menu</button>
      </div>
+     
+
 </div>

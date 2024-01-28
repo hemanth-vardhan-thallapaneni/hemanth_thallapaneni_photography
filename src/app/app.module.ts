@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { AboutComponent } from './components/about/about.component';
 import { PopUpComponent } from './dynamic-components/pop-up/pop-up.component';
+import { SideMenuListComponent } from './dynamic-components/side-menu-list/side-menu-list.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { PopUpComponent } from './dynamic-components/pop-up/pop-up.component';
     SlideUpComponent,
     AboutComponent,
     PopUpComponent,
+    SideMenuListComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -43,6 +46,8 @@ import { PopUpComponent } from './dynamic-components/pop-up/pop-up.component';
     MatIconModule,
     MatButtonModule,
     FormsModule,
+    MatSidenavModule,
+    MatButtonModule,
   ],
   providers: [NgxImageCompressService],
   bootstrap: [AppComponent],

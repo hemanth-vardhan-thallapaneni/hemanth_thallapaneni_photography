@@ -1,0 +1,8 @@
+<div class="side-menu-list">
+    <button mat-dialog-close class="close-icon" mat-icon-button>
+          <mat-icon>close</mat-icon>
+    </button>
+    <span mat-dialog-close  (click)="routeToPage(item.route)" *ngFor="let item of navItems">
+        {{item.name | titlecase}}
+     </span>
+</div>
