@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SideMenuListComponent } from 'src/app/dynamic-components/side-menu-list/side-menu-list.component';
 import { ThemeService } from 'src/app/shared/services/theme.service';
@@ -31,20 +31,19 @@ export class TopNavComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.innerWidth = window.innerWidth;
-    if (this.innerWidth < 767) {
-      this.showMenuButton = true;
-    } else {
-      this.showMenuButton = false;
-    }
+    this.toggleMenuButton(this.innerWidth);
   }
   constructor(
     private router: Router,
     private themeService: ThemeService,
     private dialog: MatDialog
   ) {
-    this.themeService.isDarkMode.subscribe(
-      (mode: boolean) => (this.isDarkMode = mode)
-    );
+    this.getScreenResolution();
+  }
+
+  getScreenResolution() {
+    this.innerWidth = window.innerWidth;
+    this.toggleMenuButton(this.innerWidth);
   }
 
   routeToPage(routeName: string) {
@@ -61,5 +60,12 @@ export class TopNavComponent {
       minWidth: '100vw',
       enterAnimationDuration: '300ms',
     });
+  }
+  toggleMenuButton(width: number) {
+    if (width < 767) {
+      this.showMenuButton = true;
+    } else {
+      this.showMenuButton = false;
+    }
   }
 }
