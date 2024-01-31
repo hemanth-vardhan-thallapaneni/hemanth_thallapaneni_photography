@@ -1,3 +1,5 @@
+import { ReCaptchaV3Provider } from '@angular/fire/app-check';
+
 export const environment = {
   production: false,
   firebase: {
@@ -10,4 +12,5 @@ export const environment = {
     appId: import.meta.env['NG_APP_APP_ID'],
     measurementId: import.meta.env['NG_APP_MEASUREMENT_ID'],
   },
+  recaptchaSiteKey: import.meta.env['NG_APP_APP_CHECK_TOKEN'],
 };

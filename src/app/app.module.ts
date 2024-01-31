@@ -7,7 +7,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { AngularFireModule } from '@angular/fire/compat';
+import {
+  initializeAppCheck,
+  provideAppCheck,
+  ReCaptchaV3Provider,
+} from '@angular/fire/app-check';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +27,8 @@ import { NgxImageCompressService } from 'ngx-image-compress';
 import { AboutComponent } from './components/about/about.component';
 import { PopUpComponent } from './dynamic-components/pop-up/pop-up.component';
 import { SideMenuListComponent } from './dynamic-components/side-menu-list/side-menu-list.component';
-
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,8 +42,14 @@ import { SideMenuListComponent } from './dynamic-components/side-menu-list/side-
     SideMenuListComponent,
   ],
   imports: [
-    AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     AngularFireDatabaseModule,
+    provideAppCheck(() =>
+      initializeAppCheck(undefined, {
+        provider: new ReCaptchaV3Provider(environment.recaptchaSiteKey),
+        isTokenAutoRefreshEnabled: true,
+      })
+    ),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -49,7 +60,10 @@ import { SideMenuListComponent } from './dynamic-components/side-menu-list/side-
     MatSidenavModule,
     MatButtonModule,
   ],
-  providers: [NgxImageCompressService],
+  providers: [
+    NgxImageCompressService,
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
