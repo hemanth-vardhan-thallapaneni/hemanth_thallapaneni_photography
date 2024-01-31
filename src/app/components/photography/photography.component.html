@@ -4,9 +4,9 @@
 <div class="photography-container" *ngIf="loadImages.length" >
 
    <div class="photo"   *ngFor="let image of loadImages | keyvalue;trackBy: trackById " [@fadeInOnEnter] >
-      <!-- <div class="photo" > -->
+
          <img [alt]="'A ' + image.value.orientation + ' of ' + image.value.category" *ngIf="image.value.thumbnailFileUrl" (click)="imageClicked(image.value)" loading="lazy" [src]="image.value.thumbnailFileUrl">
-      <!-- </div> -->
+
     
    </div>
   

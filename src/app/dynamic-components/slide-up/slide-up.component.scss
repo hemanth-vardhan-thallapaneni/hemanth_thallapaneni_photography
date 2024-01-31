@@ -9,21 +9,17 @@
    .image-container{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-left: 40px;
-    height: 600px;
-    width: 90%;
-    gap: 10px;
+    justify-content: space-around;
+    height: 700px;
+    width: 95%;
 
     .category-container{
         transform: rotate(-90deg);
         font-size: 3rem;
-        margin-left: -60px;
         
     }
     .photo-container{
         height: 90%;
-        width: 70%;
         display: flex;
         align-items: center;
         justify-content:center;
