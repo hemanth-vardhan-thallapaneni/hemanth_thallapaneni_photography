@@ -1,16 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './components/about/about.component';
-import { DigitalArtComponent } from './components/digital-art/digital-art.component';
-import { PhotographyComponent } from './components/photography/photography.component';
-import { ShopComponent } from './components/shop/shop.component';
 
 const routes: Routes = [
-  { path: '', component: PhotographyComponent },
-  { path: 'photography', component: PhotographyComponent },
-  { path: 'digital_art', component: DigitalArtComponent },
-  { path: 'shop', component: ShopComponent },
-  { path: 'about', component: AboutComponent },
+  {
+    path: 'photography',
+    loadChildren: () =>
+      import('./components/photography/photography.module').then(
+        (m) => m.PhotographyModule
+      ),
+  },
+  {
+    path: 'digital_art',
+    loadChildren: () =>
+      import('./components/digital-art/digital-art.module').then(
+        (m) => m.DigitalArtModule
+      ),
+  },
+  {
+    path: 'shop',
+    loadChildren: () =>
+      import('./components/shop/shop.module').then((m) => m.ShopModule),
+  },
+  {
+    path: 'about',
+    loadChildren: () =>
+      import('./components/about/about.module').then((m) => m.AboutModule),
+  },
 ];
 
 @NgModule({

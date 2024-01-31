@@ -16,28 +16,21 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopNavComponent } from './layouts/top-nav/top-nav.component';
-import { PhotographyComponent } from './components/photography/photography.component';
-import { DigitalArtComponent } from './components/digital-art/digital-art.component';
-import { ShopComponent } from './components/shop/shop.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SlideUpComponent } from './dynamic-components/slide-up/slide-up.component';
 import { environment } from 'src/environments/environment';
 import { FormsModule } from '@angular/forms';
 import { NgxImageCompressService } from 'ngx-image-compress';
-import { AboutComponent } from './components/about/about.component';
 import { PopUpComponent } from './dynamic-components/pop-up/pop-up.component';
 import { SideMenuListComponent } from './dynamic-components/side-menu-list/side-menu-list.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
     TopNavComponent,
-    PhotographyComponent,
-    DigitalArtComponent,
-    ShopComponent,
     SlideUpComponent,
-    AboutComponent,
     PopUpComponent,
     SideMenuListComponent,
   ],
@@ -50,6 +43,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
         isTokenAutoRefreshEnabled: true,
       })
     ),
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
