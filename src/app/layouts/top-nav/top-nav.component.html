@@ -1,6 +1,6 @@
 <div [class.dark-theme]="isDarkMode" [class.light-theme]="!isDarkMode" class="nav-container">
      <div class="left-container">
-           <img [ngStyle]="isDarkMode ? {'filter': 'invert(100%)'} : {}" src="../../../assets/HT_nav_logo.png" alt="logo" height="50px" width="50px">
+           <img alt="App logo" [ngStyle]="isDarkMode ? {'filter': 'invert(100%)'} : {}" src="../../../assets/HT_nav_logo.png" alt="logo" height="50px" width="50px">
         
             <div  (click)="routeToPage(item.route)" *ngFor="let item of navItems">
               <span *ngIf="!showMenuButton">{{item.name | titlecase}}</span> 

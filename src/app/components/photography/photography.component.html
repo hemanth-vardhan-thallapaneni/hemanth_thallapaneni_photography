@@ -5,7 +5,7 @@
 
    <div class="photo"   *ngFor="let image of loadImages | keyvalue;trackBy: trackById " [@fadeInOnEnter] >
       <!-- <div class="photo" > -->
-         <img  *ngIf="image.value.thumbnailFileUrl" (click)="imageClicked(image.value)" loading="lazy" [src]="image.value.thumbnailFileUrl">
+         <img [alt]="'A ' + image.value.orientation + ' of ' + image.value.category" *ngIf="image.value.thumbnailFileUrl" (click)="imageClicked(image.value)" loading="lazy" [src]="image.value.thumbnailFileUrl">
       <!-- </div> -->
     
    </div>
@@ -14,7 +14,7 @@
 </div>
 <div *ngIf="loadImages.length > 1" class="shot-with-love">Shot with love! ❤️</div>
 <div class="loader-container" *ngIf="loadImages.length < 1">
-   <img height="200px" width="200px" src="../../../assets/ht_logo.png"/>
+   <img alt="app loading gif" height="200px" width="200px" src="../../../assets/ht_logo.png"/>
 </div>
 
 <!-- <div>

@@ -7,8 +7,8 @@
         <div class="image-container">
         <span class="category-container">{{data.category | titlecase}}</span>
         <div class="photo-container" *ngIf="data.OriginalImageUrl">
-            <img *ngIf="data.OriginalImageUrl && imageSize" [src]="data.OriginalImageUrl" >
-            <img *ngIf="data.thumbnailFileUrl && !imageSize" [src]="data.thumbnailFileUrl" >
+            <img [alt]="'A ' + data.orientation + ' of ' + data.category" *ngIf="data.OriginalImageUrl && imageSize" [src]="data.OriginalImageUrl" >
+            <img [alt]="'A ' + data.orientation + ' of ' + data.category" *ngIf="data.thumbnailFileUrl && !imageSize" [src]="data.thumbnailFileUrl" >
             <span (click)="displayOriginalImage()" class="original-image-url">Display {{imageResolution}} size image</span>
         </div>
            
