@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/photography', pathMatch: 'full' },
   {
     path: 'photography',
     loadChildren: () =>
@@ -27,6 +26,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/about/about.module').then((m) => m.AboutModule),
   },
+  { path: '', redirectTo: 'photography', pathMatch: 'full' },
 ];
 
 @NgModule({
