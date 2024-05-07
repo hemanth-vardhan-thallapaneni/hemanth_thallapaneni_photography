@@ -74,12 +74,16 @@ export class PhotographyComponent implements OnInit {
 
   uploadImages(event: any) {
     this.selectedFile = event.target.files[0];
+    event.stopPropagation();
   }
-  uploadToFirebase(event: any) {
-    this.dataSharedSerivce.uploadPhotos(
-      this.selectedFile,
-      this.category,
-      this.orientation
-    );
+  uploadToFirebase(event: Event) {
+    event.stopPropagation();
+    if (this.selectedFile) {
+      this.dataSharedSerivce.uploadPhotos(
+        this.selectedFile,
+        this.category,
+        this.orientation
+      );
+    }
   }
 }

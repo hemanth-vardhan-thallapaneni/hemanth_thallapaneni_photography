@@ -33,10 +33,18 @@ export class SlideUpComponent {
     );
   }
 
-  downloadImage() {
+  emailImage(photo: any) {
     let noticeAgreed = localStorage.getItem('noticeAgreed');
-    if (noticeAgreed) {
-      this.dataService.downloadOriginal(this.data);
+    if (noticeAgreed === 'true') {
+      //this.dataService.downloadOriginal(this.data);
+      var email = 'hemanthvardhan5@gmail.com'; // Set recipient email address
+      var subject = encodeURIComponent(`${photo.category} photo request`);
+      var body = encodeURIComponent(
+        `Hello Hemanth, \n \n I would like a copy of ${photo.name}. \n\n Thank you!`
+      );
+      var mailtoLink =
+        'mailto:' + email + '?subject=' + subject + '&body=' + body;
+      window.open(mailtoLink, '_blank');
       return;
     }
     this.showNotice();
