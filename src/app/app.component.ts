@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { getToken, AppCheck } from '@angular/fire/app-check';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +8,8 @@ import { getToken, AppCheck } from '@angular/fire/app-check';
 export class AppComponent implements OnInit {
   title = 'hemanth_thallapaneni_photography';
 
-  constructor(private appCheck: AppCheck) {}
+  constructor() {}
   ngOnInit() {
-    getToken(this.appCheck).then((token) => {
-      //
-    });
+    // Firebase AppCheck removed
   }
 }

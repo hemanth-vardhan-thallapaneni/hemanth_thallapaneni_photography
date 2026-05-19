@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ThemeService {
-  isDarkMode: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  isDarkMode: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor() {}
 

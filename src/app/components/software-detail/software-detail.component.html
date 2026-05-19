@@ -1,0 +1,100 @@
+<div class="detail-wrapper" [class.dark-mode]="isDarkMode" *ngIf="app">
+  
+  <div class="background-grain"></div>
+  
+  <nav class="back-nav" (click)="goBack()">
+    <span class="symbol">←</span> {{ isLegalView ? 'RETURN_TO_' + app.name + '_ROOT' : 'RETURN_TO_SYSTEM_ARCHIVE' }}
+  </nav>
+
+  <main class="content-monolith">
+    
+    <!-- STANDARD APP VIEW -->
+    <ng-container *ngIf="!isLegalView">
+      <header class="app-header">
+        <div class="entry-meta">
+          <span class="label">NODE_ID: 001</span>
+          <span class="label">STATUS: STABLE</span>
+        </div>
+        <div class="name-logo-wrap">
+          <h1 class="giant-name" [attr.data-text]="app.name">{{ app.name }}</h1>
+          <img src="assets/splix.svg" class="app-logo" alt="SPLIX_LOGO">
+        </div>
+        <p class="tagline">// {{ app.tagline }}</p>
+      </header>
+
+      <div class="main-grid">
+        <section class="highlights-section">
+          <div class="label">SYSTEM_CAPABILITIES</div>
+          <ul class="highlight-list">
+            <li *ngFor="let h of app.highlights">
+              <span class="bullet">█</span> {{ h }}
+            </li>
+          </ul>
+        </section>
+
+        <aside class="technical-sidebar">
+          <div class="label">SPEC_SHEET</div>
+          <div class="specs-grid">
+            <div class="spec-card" *ngFor="let s of app.specs | keyvalue">
+              <span class="key">{{ s.key }}</span>
+              <span class="val">{{ s.value }}</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="showcase-container" *ngIf="app.showcaseSections">
+        <div class="showcase-row" *ngFor="let section of app.showcaseSections; let i = index" [class.reverse]="i % 2 !== 0">
+          <div class="showcase-text">
+            <div class="feature-label">[ FEATURE_{{ section.id }} // {{ section.title }} ]</div>
+            <p class="feature-desc">{{ section.desc }}</p>
+          </div>
+          <div class="showcase-media">
+            <div class="media-track">
+              <div class="media-flex" *ngIf="section.images.length > 1">
+                <img *ngFor="let img of section.images" [src]="img" class="parallax-img multi">
+              </div>
+              <img *ngIf="section.images.length === 1" [src]="section.images[0]" class="parallax-img">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="legal-actions">
+        <a [routerLink]="app.privacyPolicyLink" class="flat-btn">[ PRIVACY POLICY ]</a>
+        <a [routerLink]="app.termsLink" class="flat-btn">[ TERMS & CONDITIONS ]</a>
+        <a href="mailto:feedback@splix.app" class="flat-btn">[ FEEDBACK ]</a>
+      </section>
+
+      <footer class="action-footer">
+        <a [href]="app.appStoreLink" class="btn-box download disabled" tabindex="-1" aria-disabled="true">
+          [ ACQUIRE_ON_APP_STORE ]
+        </a>
+      </footer>
+    </ng-container>
+
+    <!-- LEGAL DOCUMENT VIEW -->
+    <ng-container *ngIf="isLegalView && legalData">
+      <section class="legal-doc-container">
+        <header class="legal-header">
+          <h1 class="legal-title">{{ legalData.title }}</h1>
+          <div class="last-updated">LAST_UPDATED: {{ legalData.lastUpdated }}</div>
+        </header>
+
+        <div class="legal-content">
+          <p class="legal-intro" [innerHTML]="legalData.intro"></p>
+
+          <div class="legal-section" *ngFor="let section of legalData.sections">
+            <h2 class="section-header">{{ section.header }}</h2>
+            <p class="section-content">{{ section.content }}</p>
+            <ul class="section-bullets" *ngIf="section.bullets">
+              <li *ngFor="let bullet of section.bullets" [innerHTML]="bullet"></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </ng-container>
+
+  </main>
+
+</div>

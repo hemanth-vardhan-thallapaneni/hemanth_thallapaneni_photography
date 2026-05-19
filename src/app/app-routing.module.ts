@@ -3,36 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () =>
-      import('./components/photography/photography.module').then(
-        (m) => m.PhotographyModule
-      ),
-    pathMatch: 'full',
-  },
-  {
     path: 'photography',
     loadChildren: () =>
-      import('./components/photography/photography.module').then(
-        (m) => m.PhotographyModule
-      ),
+      import('./components/hub/hub.module').then((m) => m.HubModule),
   },
   {
-    path: 'digital_art',
+    path: 'software',
     loadChildren: () =>
-      import('./components/digital-art/digital-art.module').then(
-        (m) => m.DigitalArtModule
-      ),
+      import('./components/hub/hub.module').then((m) => m.HubModule),
   },
   {
-    path: 'shop',
+    path: '',
+    pathMatch: 'full',
     loadChildren: () =>
-      import('./components/shop/shop.module').then((m) => m.ShopModule),
-  },
-  {
-    path: 'about',
-    loadChildren: () =>
-      import('./components/about/about.module').then((m) => m.AboutModule),
+      import('./components/hub/hub.module').then((m) => m.HubModule),
   },
 ];
 

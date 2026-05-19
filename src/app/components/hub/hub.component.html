@@ -1,0 +1,137 @@
+<div class="archival-wrapper" [class]="'state-' + currentState" [class.dark-mode]="isDarkMode">
+  
+  <!-- PERSISTENT MINIMAL NAV -->
+  <nav class="persistent-nav" *ngIf="currentState !== 'LANDING'">
+    <span class="nav-brand" (click)="setState('LANDING')">H. THALLAPANENI</span>
+    <div class="nav-links">
+      <span (click)="setState('PHOTOGRAPHY')" [class.active]="currentState === 'PHOTOGRAPHY'">CAPTURES</span>
+      <span (click)="setState('APPS')" [class.active]="currentState === 'APPS'">UTILITIES</span>
+      <span class="theme-toggle" (click)="toggleTheme()">[ {{ isDarkMode ? 'LIGHT' : 'DARK' }} ]</span>
+    </div>
+  </nav>
+
+  <!-- LANDING / ABOUT PAGE -->
+  <section class="landing-page" *ngIf="currentState === 'LANDING'">
+    
+    <!-- CINEMATIC TEXTURE ELEMENTS -->
+    <div class="film-grain"></div>
+    <div class="gate-flicker"></div>
+    
+    <div class="landing-content">
+      <div class="system-status">
+        <span class="pulse"></span> [ SYSTEM: ACTIVE ] [ LATENCY: {{ systemLatency }}ms ]
+      </div>
+      
+      <h1 class="giant-name" data-text="HEMANTH THALLAPANENI">HEMANTH THALLAPANENI</h1>
+      
+      <p class="landing-bio">{{ aboutBio }}</p>
+      
+      <div class="landing-actions">
+        <div class="action-box" (click)="setState('PHOTOGRAPHY')">
+          <span class="box-label">ARCHIVE_001</span>
+          <span class="box-title">PHOTOGRAPHY</span>
+        </div>
+        <div class="action-box" (click)="setState('APPS')">
+          <span class="box-label">ARCHIVE_002</span>
+          <span class="box-title">SOFTWARE</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="landing-controls">
+      <span (click)="toggleTheme()">[ MODE: {{ isDarkMode ? 'WHITE' : 'BLACK' }} ]</span>
+    </div>
+
+    <div class="landing-footer">
+      [ VERSION: 2026.4.01 ] [ LOC: HOUSTON, TX ] [ @2026 ]
+    </div>
+  </section>
+
+  <!-- PHOTOGRAPHY WORLD -->
+  <div class="archival-layout" *ngIf="currentState === 'PHOTOGRAPHY'">
+    <aside class="index-sidebar">
+      <nav class="project-list">
+        <div class="list-item" *ngFor="let photo of photos$ | async; let i = index" (click)="scrollTo('photo-' + i)">
+          <span class="id">00{{ i + 1 }}</span>
+          <span class="title">{{ photo.name }}</span>
+        </div>
+      </nav>
+    </aside>
+    <main class="work-monolith">
+      <section class="work-section contact-sheet-section">
+        <div class="section-label">SERIES_01 // THE ARCHIVE</div>
+        
+        <div class="contact-sheet-grid">
+          <div [id]="'photo-' + i" class="contact-frame" *ngFor="let photo of photos$ | async; let i = index">
+            <div class="image-wrapper">
+              <img [src]="photo.OriginalImageUrl" [alt]="photo.name">
+              <div class="image-overlay">
+                <div class="overlay-meta">
+                  <span class="id">ID: 00{{ i + 1 }}</span>
+                  <span class="stamp">BODY: {{ getTechStamp(photo).BODY }}</span>
+                  <span class="stamp">LENS: {{ getTechStamp(photo).LENS }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="frame-label">{{ photo.name }}</div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- APPS WORLD -->
+  <div class="archival-layout" *ngIf="currentState === 'APPS'">
+    <aside class="index-sidebar">
+      <nav class="project-list">
+        <div class="list-item" (click)="viewApp('splix')">
+          <span class="id">001</span>
+          <span class="title">SPLIX</span>
+        
+        </div>
+        <div class="list-item" (click)="scrollTo('pipeline')">
+          <span class="id">002</span>
+          <span class="title">PIPELINE</span>
+        </div>
+      </nav>
+    </aside>
+    <main class="work-monolith">
+      <section id="splix" class="work-section clickable" (click)="viewApp('splix')">
+        <div class="section-label">001 // SOFTWARE</div>
+        <div class="header-logo-wrap">
+          <h1 class="work-header">SPLIX</h1>
+          <!-- <svg class="header-logo-svg" [style.filter]="isDarkMode ? 'invert(100%)' : 'none'">
+            <use href="assets/splix.svg#splix-icon"></use>
+          </svg> -->
+        </div>
+        <div class="work-content">
+          <p class="manifesto-small">
+            A simple tool to track group expenses and split bills with friends.<br>
+            Pay once and use it forever with no monthly subscriptions.<br>
+            See exactly who owes what without any extra clutter.
+          </p>
+          <div class="tech-specs">
+            <div class="spec" *ngFor="let spec of techSpecs | keyvalue">
+              <span class="k">{{ spec.key }}:</span> {{ spec.value }}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="pipeline" class="work-section">
+        <div class="section-label">002 // LOG</div>
+        <h2 class="work-header">PIPELINE</h2>
+        <div class="pipeline-index">
+          <div class="p-item" *ngFor="let item of pipeline" [class.clickable]="item.id" (click)="viewApp(item.id)">
+            <div class="p-head">
+              <span class="p-title">{{ item.name }}</span>
+              <span class="p-status">[{{ item.status }}]</span>
+            </div>
+            <div class="p-desc">{{ item.desc }}</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+</div>

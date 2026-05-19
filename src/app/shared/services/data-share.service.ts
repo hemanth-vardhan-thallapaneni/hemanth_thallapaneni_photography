@@ -1,181 +1,58 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFireDatabase,
-  AngularFireList,
-} from '@angular/fire/compat/database';
-import {
-  AngularFireStorage,
-  AngularFireStorageReference,
-} from '@angular/fire/compat/storage';
-import { NgxImageCompressService } from 'ngx-image-compress';
-import { finalize } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataShareService {
-  private photographyPath = 'images/photography';
-  photographyRef: AngularFireList<any> | undefined;
-  images: any[] = [
+  // Using static open-source images from Unsplash (Cinematic/Architectural/Tech)
+  private staticImages: any[] = [
     {
-      image_url: '../../../assets/images/IMG_0016.JPG',
-      category: 'nature',
-    },
-    {
-      image_url: '../../../assets/images/IMG_0706.jpg',
-      category: 'nature',
-    },
-    {
-      image_url: '../../../assets/images/IMG_0160.JPG',
+      name: 'NEON_DISTRICT',
+      OriginalImageUrl: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&q=80&w=1200',
       category: 'architecture',
     },
     {
-      image_url: '../../../assets/images/IMG_0059.JPG',
-      category: 'nature',
-    },
-    {
-      image_url: '../../../assets/images/IMG_0117.jpg',
+      name: 'INDUSTRIAL_UNIT_01',
+      OriginalImageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200',
       category: 'architecture',
     },
     {
-      image_url: '../../../assets/images/IMG_7228.jpg',
+      name: 'CYBER_PUNK_VIBE',
+      OriginalImageUrl: 'https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&q=80&w=1200',
       category: 'auto',
     },
     {
-      image_url: '../../../assets/images/IMG_0135.JPG',
+      name: 'BRUTAL_CONCRETE',
+      OriginalImageUrl: 'https://images.unsplash.com/photo-1518005020250-6759229547b5?auto=format&fit=crop&q=80&w=1200',
       category: 'architecture',
     },
     {
-      image_url: '../../../assets/images/IMG_0156.JPG',
-      category: 'architecture',
-    },
-    {
-      image_url: '../../../assets/images/IMG_0159.JPG',
-      category: 'architecture',
-    },
-    {
-      image_url: '../../../assets/images/IMG_0031.JPG',
-      category: 'nature',
-    },
-    {
-      image_url: '../../../assets/images/IMG_7227.jpg',
+      name: 'NIGHT_DRIVE',
+      OriginalImageUrl: 'https://images.unsplash.com/photo-1493238792040-d7104756681b?auto=format&fit=crop&q=80&w=1200',
       category: 'auto',
     },
     {
-      image_url: '../../../assets/images/IMG_0164.JPG',
-      category: 'architecture',
-    },
-    {
-      image_url: '../../../assets/images/IMG_0221.JPG',
+      name: 'VOID_STRUCTURE',
+      OriginalImageUrl: 'https://images.unsplash.com/photo-1470723710355-95304d8aece4?auto=format&fit=crop&q=80&w=1200',
       category: 'nature',
-    },
-    {
-      image_url: '../../../assets/images/IMG_0384-Enhanced-NR.jpg',
-      category: 'nature',
-    },
-    {
-      image_url: '../../../assets/images/IMG_0415.jpg',
-      category: 'nature',
-    },
-    {
-      image_url: '../../../assets/images/IMG_0558-2.jpg',
-      category: 'nature',
-    },
-    {
-      image_url: '../../../assets/images/IMG_0602.jpg',
-      category: 'nature',
-    },
-
-    {
-      image_url: '../../../assets/images/IMG_0813.jpg',
-      category: 'nature',
-    },
-    {
-      image_url: '../../../assets/images/IMG_0924.jpg',
-      category: 'nature',
-    },
+    }
   ];
 
-  constructor(
-    private db: AngularFireDatabase,
-    private storage: AngularFireStorage,
-    private imageCompress: NgxImageCompressService
-  ) {
-    this.photographyRef = db.list(this.photographyPath);
-    //this.uploadPhotos();
+  constructor() {}
+
+  getAllPhotos(): Observable<any[]> {
+    return of(this.staticImages);
   }
 
-  getAllPhotos(): AngularFireList<any> | any {
-    return this.db.list<any>('images/photography').valueChanges();
-  }
-  uploadPhotos(file: File, category: string, orienations: any) {
-    if (file && category && orienations) {
-      let thumbnailImage;
-      this.imageCompress.uploadFile().then(({ image, orientation }) => {
-        this.imageCompress
-          .compressFile(image, orientation, 50, 50) // 50% ratio, 50% quality
-          .then((compressedImage) => {
-            this.uploadImageAndThumbnail(
-              file,
-              compressedImage,
-              category,
-              orienations
-            );
-          });
-      });
-    }
-  }
-
-  async uploadImageAndThumbnail(
-    imageFile: any,
-    thumbnailFile: any,
-    category: string,
-    orientation: string
-  ) {
-    let OriginalDownloadURL: any;
-    let thumbNailDownloadURL: any;
-    // Upload the thumbnail file.
-    // const thumbnailFilePath = `images/thumbnails/photography/${imageFile.name}`;
-    // const thumbnailFileRef = this.storage.ref(thumbnailFilePath);
-    // thumbnailFileRef
-    //   .put(imageFile.name, thumbnailFile)
-    //   .then((snapshot: any) => {
-    //     thumbnailFileRef.getDownloadURL().subscribe((res) => {
-    //       thumbNailDownloadURL = res;
-    // Upload the original image file.
-    const OriginalFilePath = `images/photography/${imageFile.name}`;
-    const imageFileRef = this.storage.ref(OriginalFilePath);
-    console.log(imageFile);
-    this.storage.upload(OriginalFilePath, imageFile).then((snapshot: any) => {
-      snapshot.ref.getDownloadURL().then((res: any) => {
-        OriginalDownloadURL = res;
-        // Create a new object to store the image information.
-        const imageInfo = {
-          name: imageFile.name,
-          OriginalFilePath: OriginalFilePath,
-          OriginalImageUrl: OriginalDownloadURL,
-          thumbnailFileUrl: thumbnailFile,
-          category: category,
-          orientation: orientation,
-        };
-
-        this.photographyRef?.push(imageInfo);
-        console.log('here');
-      });
-    });
-    //   });
-    // });
-  }
-
+  // Placeholder for download logic to prevent errors
   downloadOriginal(imageObj: any) {
-    // window.open(imageObj.OriginalImageUrl);
-    fetch(imageObj.OriginalImageUrl)
-      .then((res) => res.blob()) // Gets the response and returns it as a blob
-      .then((blob) => {
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(blob);
-        link.download = 'my-image.jpg';
-        link.click();
-      });
+    window.open(imageObj.OriginalImageUrl, '_blank');
+  }
+
+  // Stub for components that might still call these
+  uploadPhotos(file: File, category: string, orienations: any) {
+    console.warn('Upload disabled: Firebase removed.');
   }
 }
+

@@ -35,8 +35,28 @@ $hemanth_thallapaneni_photography-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
-html, body { height: 100%; }
-body { margin: 0;   font-family: 'Poppins', sans-serif; }
+html, body { 
+  height: auto; 
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto; 
+  overflow-x: hidden;
+  background: white;
+  color: black;
+  cursor: crosshair;
+  transition: background 0.3s ease, color 0.3s ease;
+
+  &.dark-mode {
+    background: #000;
+    color: #fff;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  border-radius: 0 !important; // Absolute mandate
+}
 .download-button{
   display: flex;
   font-size: 1rem;
