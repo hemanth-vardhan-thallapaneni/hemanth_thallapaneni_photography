@@ -4,7 +4,7 @@
   <nav class="persistent-nav" *ngIf="currentState !== 'LANDING'">
     <span class="nav-brand" (click)="setState('LANDING')">H. THALLAPANENI</span>
     <div class="nav-links">
-      <span (click)="setState('PHOTOGRAPHY')" [class.active]="currentState === 'PHOTOGRAPHY'">CAPTURES</span>
+      <span class="nav-link disabled">CAPTURES <small class="status-tag">UNDER CONSTRUCTION</small></span>
       <span (click)="setState('APPS')" [class.active]="currentState === 'APPS'">UTILITIES</span>
       <span class="theme-toggle" (click)="toggleTheme()">[ {{ isDarkMode ? 'LIGHT' : 'DARK' }} ]</span>
     </div>
@@ -26,8 +26,8 @@
       <p class="landing-bio">{{ aboutBio }}</p>
       
       <div class="landing-actions">
-        <div class="action-box" (click)="setState('PHOTOGRAPHY')">
-          <span class="box-label">ARCHIVE_001</span>
+        <div class="action-box disabled">
+          <span class="box-label">ARCHIVE_001 UNDER CONSTRUCTION</span>
           <span class="box-title">PHOTOGRAPHY</span>
         </div>
         <div class="action-box" (click)="setState('APPS')">
@@ -42,7 +42,7 @@
     </div>
 
     <div class="landing-footer">
-      [ VERSION: 2026.4.01 ] [ LOC: HOUSTON, TX ] [ @2026 ]
+      [ VERSION: 2026.4.01 ] [ LOC: DALLAS, TX ] [ @2026 ]
     </div>
   </section>
 
@@ -58,7 +58,7 @@
     </aside>
     <main class="work-monolith">
       <section class="work-section contact-sheet-section">
-        <div class="section-label">SERIES_01 // THE ARCHIVE</div>
+        <div class="section-label">SERIES_01 // THE ARCHIVE <span class="status-tag">UNDER CONSTRUCTION</span></div>
         
         <div class="contact-sheet-grid">
           <div [id]="'photo-' + i" class="contact-frame" *ngFor="let photo of photos$ | async; let i = index">
