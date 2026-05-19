@@ -5,6 +5,11 @@
 
 .detail-wrapper {
   height: 100vh; padding: 5rem 1.5rem 2rem; position: relative; overflow-y: auto; overflow-x: hidden;
+  
+  &.no-snap {
+    scroll-snap-type: none !important;
+  }
+
   @media (min-width: 768px) { padding: 3rem 10% 4rem; scroll-padding-top: 3rem; scroll-snap-type: y mandatory; }
 }
 

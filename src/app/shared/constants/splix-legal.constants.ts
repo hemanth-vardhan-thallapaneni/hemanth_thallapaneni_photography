@@ -5,29 +5,20 @@ export const SPLIX_LEGAL = {
     intro: 'This Privacy Policy governs the data processing practices of **Splix** ("the Application"), a utility designed for group expense tracking and ledger management. We believe in radical clarity, structural honesty, and absolute data integrity.',
     sections: [
       {
-        header: '1. Data Collection and Sovereignty',
-        content: 'Splix is architected as a device-driven financial tool.',
+        header: '1. Data Collection and Authentication Infrastructure',
+        content: 'Splix is architected as a cloud-synchronized financial ledger utility.',
         bullets: [
-          '**No Data Harvesting:** We do not track, collect, scrape, or harvest your personal information, contact lists, or location data.',
-          '**No Accounts Required:** The Application operates without mandatory account registration or identity dependencies.',
-          '**Local Architecture:** Your financial logs, expense entries, balances, and group structures are primarily generated and stored locally on your physical device.'
+          '**Account Registration:** To preserve your data integrity and securely connect you to your shared groups across devices, the Application requires account creation and user authentication sessions. We collect only the essential credentials required to establish and secure your profile.',
+          '**Minimalist Collection Profile:** We do not track, scrape, or harvest non-essential personal information, background contact lists, browsing history, or precise hardware location data.',
+          '**Core Ledger Data:** We collect and process the transaction details, group structures, names, and balances you explicitly input into the framework. This data is structurally required to execute the ledger\'s math.'
         ]
       },
       {
-        header: '2. Cloud Synchronization and Storage',
-        content: 'To facilitate shared group ledgers and multi-device coordination, Splix utilizes secure cloud infrastructure (Google Cloud Firebase / Firestore):',
-        bullets: [
-          '**Data Transit:** When you create a shared group, transaction entries and group balance states are securely transmitted to and stored in isolated cloud database sandboxes.',
-          '**Purpose Limitation:** This data is stored strictly to maintain real-time state synchronization between you and your group members.',
-          '**No External Access:** This data is never sold, leased, traded, or shared with third-party advertising networks, analytics platforms, or data brokers.'
-        ]
-      },
-      {
-        header: '3. Third-Party Services',
+        header: '2. Third-Party Services',
         content: 'The Application may interface with native operating system features (such as Apple App Store transactional frameworks for payment processing). These services are governed exclusively by their respective privacy policies (e.g., Apple’s Privacy Policy). Splix never gains access to your credit card numbers, bank account numbers, or underlying payment credentials.'
       },
       {
-        header: '4. Data Retention and Deletion',
+        header: '3. Data Retention and Deletion',
         content: 'Because you own your data, you retain absolute control over it:',
         bullets: [
           '**Local Data:** Deleting the Application from your device immediately purges all locally stored ledger states.',
@@ -35,7 +26,7 @@ export const SPLIX_LEGAL = {
         ]
       },
       {
-        header: '5. Changes to This Policy',
+        header: '4. Changes to This Policy',
         content: 'We reserve the right to update this architectural privacy manifesto to reflect structural changes in our software code. Any updates will be logged on this page with an adjusted timestamp.'
       }
     ]
