@@ -45,7 +45,7 @@ export class SoftwareDetailComponent implements OnInit {
         'Cloud-synced infrastructure for real-time ledger updates across group members.',
         'Authenticated user sessions to securely preserve balance history across devices.'
       ],
-      appStoreLink: 'https://apps.apple.com/app/splix-ledger',
+      appStoreLink: 'https://apps.apple.com/us/app/splix-app/id6760433317',
       privacyPolicyLink: '/software/splix/privacy',
       termsLink: '/software/splix/termsandconditions',
       manifesto: 'OWN YOUR DATA. OWN YOUR TOOLS.',
